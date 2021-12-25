@@ -8,7 +8,7 @@ import s from './ContactsForm.module.scss';
 export default function ContactsForm() {
   const dispatch = useDispatch();
   const contacts = useSelector(state => state.contacts.entities);
-
+  const token = useSelector(state => state.auth.token);
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
@@ -30,7 +30,7 @@ export default function ContactsForm() {
       return;
     }
     const newContact = { name: name, phone: number };
-    dispatch(contactsOperations.addContact(newContact));
+    dispatch(contactsOperations.addContact(newContact, token));
   };
 
   const onSubmit = e => {

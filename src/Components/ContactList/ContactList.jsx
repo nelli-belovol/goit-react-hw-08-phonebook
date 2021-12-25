@@ -4,10 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { contactsOperations, contactsSelectors } from 'redux/contacts';
 
 import PropTypes from 'prop-types';
-import s from './ContactList.module.scss';
+import s from './ContactsList.module.scss';
 
-export default function ContactList() {
+export default function ContactsList() {
   const contacts = useSelector(contactsSelectors.getContacts);
+  // const token = useSelector(state => state.auth.token);
   const dispatch = useDispatch();
   const filter = useSelector(contactsSelectors.getFilter);
 
@@ -50,7 +51,7 @@ export default function ContactList() {
   );
 }
 
-ContactList.propTypes = {
+ContactsList.propTypes = {
   contacts: PropTypes.arrayOf(PropTypes.object),
   handleDel: PropTypes.func,
 };

@@ -1,18 +1,7 @@
 import { createReducer, combineReducers } from '@reduxjs/toolkit';
 // import { createSlice } from '@reduxjs/toolkit';
 
-import {
-  // fetchContactsRequest,
-  // fetchContactsSuccess,
-  // fetchContactsError,
-  // addContactRequest,
-  // addContactSuccess,
-  // addContactError,
-  // delContactRequest,
-  // delContactSuccess,
-  // delContactError,
-  changeFilter,
-} from './contactsAction';
+import { changeFilter } from './contactsAction';
 
 import { fetchContacts, addContact, delContact } from './contactsOperations';
 
