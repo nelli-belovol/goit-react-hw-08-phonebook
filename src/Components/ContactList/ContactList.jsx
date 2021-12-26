@@ -2,19 +2,21 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { contactsOperations, contactsSelectors } from 'redux/contacts';
-
+import { authSelectors } from '../../redux/auth/authSelectors';
+import { tokenConfig } from '../../ApiService/ApiService';
 import PropTypes from 'prop-types';
 import s from './ContactsList.module.scss';
 
 export default function ContactsList() {
   const contacts = useSelector(contactsSelectors.getContacts);
-  // const token = useSelector(state => state.auth.token);
+  const token = useSelector(authSelectors.getToken);
   const dispatch = useDispatch();
   const filter = useSelector(contactsSelectors.getFilter);
 
   useEffect(() => {
+    tokenConfig.set(token);
     dispatch(contactsOperations.fetchContacts());
-  }, [dispatch]);
+  }, [dispatch, token]);
 
   const handleDelContact = id => {
     dispatch(contactsOperations.delContact(id));

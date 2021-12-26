@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // import * as contactsActions from '../../redux/contacts/contactsAction';
 import { contactsOperations } from 'redux/contacts';
+import { authSelectors } from '../../redux/auth/authSelectors';
+import { tokenConfig } from '../../ApiService/ApiService';
 import PropTypes from 'prop-types';
 import s from './ContactsForm.module.scss';
 
 export default function ContactsForm() {
   const dispatch = useDispatch();
   const contacts = useSelector(state => state.contacts.entities);
-  const token = useSelector(state => state.auth.token);
+  const token = useSelector(authSelectors.getToken);
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
@@ -29,8 +31,9 @@ export default function ContactsForm() {
       alert(`${name} is already in contacts.`);
       return;
     }
-    const newContact = { name: name, phone: number };
-    dispatch(contactsOperations.addContact(newContact, token));
+    const newContact = { name, number };
+
+    dispatch(contactsOperations.addContact(newContact));
   };
 
   const onSubmit = e => {

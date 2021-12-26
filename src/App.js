@@ -1,9 +1,9 @@
 import './App.css';
 
-import React, { lazy, Suspense } from 'react';
+import React, { lazy, Suspense, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
-
-import Layout from './Components/Layout/Layout';
+import { authSelectors } from './redux/auth/authSelectors';
+import AppBar from './Components/AppBar/AppBar';
 
 import { Loading } from './Components/Loading';
 import HomeView from './views/HomeView/HomeView.jsx';
@@ -15,20 +15,19 @@ import ContactsView from './views/ContactsView/ContactsView.jsx';
 function App() {
   return (
     <Suspense fallback={<Loading />}>
+      <AppBar />
       <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<HomeView />} />
-          <Route path="/register" element={<RegisterView />} />
-          <Route path="/logIn" element={<LoginView />} />
-          <Route
-            path="/contacts"
-            element={
-              <PrivateRoute>
-                <ContactsView />
-              </PrivateRoute>
-            }
-          />
-        </Route>
+        <Route index element={<HomeView />} />
+        <Route path="/register" element={<RegisterView />} />
+        <Route path="/logIn" element={<LoginView />} />
+        <Route
+          path="/contacts"
+          element={
+            <PrivateRoute>
+              <ContactsView />
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </Suspense>
   );

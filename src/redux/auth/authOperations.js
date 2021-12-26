@@ -1,14 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import * as authApi from './authApi';
-
-// import { authSelectors } from './authSelectors';
+import * as ApiService from '../../ApiService/ApiService';
+import { authSelectors } from './authSelectors';
 
 const register = createAsyncThunk(
   'auth/register',
   async (credentials, { rejectWithValue }) => {
     try {
-      const { data } = await authApi.signUp(credentials);
+      const { data } = await ApiService.signUp(credentials);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -20,7 +19,7 @@ const logIn = createAsyncThunk(
   'auth/logIn',
   async (credentials, { rejectWithValue }) => {
     try {
-      const { data } = await authApi.logIn(credentials);
+      const { data } = await ApiService.logIn(credentials);
 
       return data;
     } catch (error) {
@@ -31,9 +30,10 @@ const logIn = createAsyncThunk(
 
 const logOut = createAsyncThunk(
   'auth/logOut',
-  async (_, { rejectWithValue }) => {
+  async (_, { getState, rejectWithValue }) => {
     try {
-      const { data } = await authApi.logOut();
+      const token = authSelectors.getToken(getState());
+      const { data } = await ApiService.logOut(token);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -43,9 +43,17 @@ const logOut = createAsyncThunk(
 
 const getInfoUser = createAsyncThunk(
   'auth/getInfoUser',
-  async (credentials, { rejectWithValue }) => {
+  async (credentials, { getState, rejectWithValue }) => {
+    const persistedToken = authSelectors.getToken(getState());
+
+    if (persistedToken === null) {
+      return rejectWithValue();
+    }
     try {
-      const { data } = await authApi.getInfoUser(credentials);
+      const { data } = await ApiService.getInfoUser(
+        credentials,
+        persistedToken,
+      );
       return data;
     } catch (error) {
       return rejectWithValue(error.message);

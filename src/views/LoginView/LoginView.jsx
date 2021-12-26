@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
-
+import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { authOperations } from '../../redux/auth/authOperations';
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
 // import s from './HomeView.module.scss';
 
 export default function LoginView() {
@@ -30,31 +34,44 @@ export default function LoginView() {
   };
   return (
     <div>
-      <h1>Страница логина</h1>
+      <Typography variant="h3" gutterBottom component="div">
+        Страница логина
+      </Typography>
 
-      <form onSubmit={handleSubmit} autoComplete="off">
-        <label>
-          Почта
-          <input
+      <Box
+        component="form"
+        sx={{
+          '& .MuiTextField-root': { m: 1, width: '25ch' },
+        }}
+        noValidate
+        onSubmit={handleSubmit}
+        autoComplete="on"
+      >
+        <div>
+          <TextField
+            required
+            id="outlined-required"
+            label="Почта"
             type="email"
             name="email"
             value={email}
             onChange={handleChange}
           />
-        </label>
 
-        <label>
-          Пароль
-          <input
+          <TextField
+            id="outlined-password-input"
+            label="Пароль"
             type="password"
+            autoComplete="current-password"
             name="password"
             value={password}
             onChange={handleChange}
           />
-        </label>
-
-        <button type="submit">Войти</button>
-      </form>
+        </div>
+        <Button variant="contained" type="button">
+          Войти
+        </Button>
+      </Box>
     </div>
   );
 }
