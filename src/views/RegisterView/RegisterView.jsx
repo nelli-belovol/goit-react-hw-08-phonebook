@@ -117,7 +117,7 @@ export default function RegisterView() {
       >
         <NavLink to="/login"> Register</NavLink>
       </Button>
-      {error && <p>Check the data and try again</p>}
+      {error && <p style={{ color: 'red' }}>Check the data and try again</p>}
     </Box>
   );
 }

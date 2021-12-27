@@ -82,7 +82,7 @@ export default function LoginView() {
         >
           Login
         </Button>
-        {error && <p>Check the data and try again</p>}
+        {error && <p style={{ color: 'red' }}>Check the data and try again</p>}
       </Box>
     </div>
   );
