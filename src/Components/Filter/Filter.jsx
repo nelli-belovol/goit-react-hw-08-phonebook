@@ -6,7 +6,8 @@ import { contactsSelectors } from 'redux/contacts';
 import * as contactsActions from '../../redux/contacts/contactsAction';
 
 import PropTypes from 'prop-types';
-import s from './Filter.module.scss';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 
 export default function Filter({ title }) {
   const dispatch = useDispatch();
@@ -18,15 +19,34 @@ export default function Filter({ title }) {
 
   return (
     <>
-      <label className={s.filter} htmlFor="findname">
-        {title}
-        <input
+      <Box
+        component="form"
+        sx={[
+          {
+            display: 'block',
+            maxWidth: '500px',
+            margin: 'auto',
+          },
+          {
+            '& .MuiTextField-root': {
+              margin: 'auto',
+              marginTop: '10px',
+              width: '100%',
+            },
+          },
+        ]}
+        noValidate
+      >
+        <TextField
           id="findname"
+          label="enter search name"
           type="text"
-          onChange={handleChange}
+          name="name"
           value={filter}
+          autoComplete="on"
+          onChange={handleChange}
         />
-      </label>
+      </Box>
     </>
   );
 }

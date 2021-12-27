@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -12,6 +12,8 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
+import s from './UserMenu.module.scss';
+
 export default function UserMenu() {
   const name = useSelector(authSelectors.getUsername);
   const dispatch = useDispatch();
@@ -22,17 +24,19 @@ export default function UserMenu() {
         <AppBar position="static">
           <Toolbar>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              <NavLink to="/contacts">Телефонный справочник</NavLink>
+              Phonebook
             </Typography>
             <img src={avatar} alt={name} width="32" />
-            <span>Добро пожаловать, {name}</span>
+            <span>Welcome, {name}</span>
             <Button
-              color="inherit"
+              color="secondary"
               onClick={() => {
                 dispatch(authOperations.logOut());
               }}
             >
-              <NavLink to="/login">Выйти</NavLink>
+              <NavLink className={s.userMenu__link} to="/login">
+                Logout
+              </NavLink>
             </Button>
           </Toolbar>
         </AppBar>

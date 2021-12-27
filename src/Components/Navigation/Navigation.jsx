@@ -15,18 +15,16 @@ export default function UserMenu() {
         <AppBar position="static">
           <Toolbar>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              <NavLink className={s.nav__link} to="/contacts">
-                Телефонный справочник
-              </NavLink>
+              Phonebook
             </Typography>
             <Button color="inherit">
               <NavLink className={s.nav__link} to="/register">
-                Зарегистрироваться
+                Register
               </NavLink>
             </Button>
             <Button color="inherit">
               <NavLink className={s.nav__link} to="/login">
-                Войти
+                Login
               </NavLink>
             </Button>
           </Toolbar>

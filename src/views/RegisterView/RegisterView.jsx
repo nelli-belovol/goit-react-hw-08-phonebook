@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { authOperations } from '../../redux/auth/authOperations';
+import { NavLink } from 'react-router-dom';
 
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
-import { NavLink } from 'react-router-dom';
 
 export default function RegisterView() {
   const dispatch = useDispatch();
@@ -41,63 +40,74 @@ export default function RegisterView() {
   };
 
   return (
-    <div>
-      <Typography variant="h3" gutterBottom component="div">
-        Страница регистрации
-      </Typography>
+    <Box
+      component="form"
+      sx={[
+        {
+          display: 'block',
+          maxWidth: '500px',
+          margin: 'auto',
+        },
+        {
+          '& .MuiTextField-root': {
+            margin: 'auto',
+            marginTop: '10px',
+            width: '100%',
+          },
+        },
+      ]}
+      noValidate
+      onSubmit={handleSubmit}
+      autoComplete="on"
+    >
+      <div>
+        <TextField
+          required
+          id="outlined-required"
+          label="Имя"
+          type="text"
+          name="name"
+          value={name}
+          onChange={handleChange}
+        />
+        <TextField
+          required
+          id="outlined-required"
+          label="Почта"
+          type="email"
+          name="email"
+          value={email}
+          onChange={handleChange}
+        />
 
-      <Box
-        component="form"
-        sx={{
-          '& .MuiTextField-root': { m: 1, width: '25ch' },
-        }}
-        noValidate
-        onSubmit={handleSubmit}
-        autoComplete="on"
+        <TextField
+          required
+          id="outlined-password-input"
+          label="Пароль"
+          type="password"
+          autoComplete="current-password"
+          name="password"
+          value={password}
+          onChange={handleChange}
+        />
+        <TextField
+          required
+          id="outlined-password-input"
+          label="Пароль"
+          type="password"
+          autoComplete="current-password"
+          name="passwordConfirm"
+          value={passwordConfirm}
+          onChange={handleChange}
+        />
+      </div>
+      <Button
+        sx={{ margin: 'auto', marginTop: '10px', width: '100%' }}
+        variant="contained"
+        type="submit"
       >
-        <div>
-          <TextField
-            required
-            id="outlined-required"
-            label="Имя"
-            type="text"
-            name="name"
-            value={name}
-            onChange={handleChange}
-          />
-          <TextField
-            required
-            id="outlined-required"
-            label="Почта"
-            type="email"
-            name="email"
-            value={email}
-            onChange={handleChange}
-          />
-
-          <TextField
-            id="outlined-password-input"
-            label="Пароль"
-            type="password"
-            autoComplete="current-password"
-            name="password"
-            value={password}
-            onChange={handleChange}
-          />
-          <TextField
-            id="outlined-password-input"
-            label="Пароль"
-            type="password"
-            autoComplete="current-password"
-            name="passwordConfirm"
-            value={passwordConfirm}
-            onChange={handleChange}
-          />
-        </div>
-        <Button variant="contained" type="submit">
-          <NavLink to="/login"> Зарегистрироваться</NavLink>
-        </Button>
-      </Box>
-    </div>
+        <NavLink to="/login"> Register</NavLink>
+      </Button>
+    </Box>
   );
 }

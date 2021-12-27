@@ -1,11 +1,13 @@
 import React from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
-// import s from './HomeView.module.scss';
+
+import Typography from '@mui/material/Typography';
 
 export default function HomeView() {
   return (
     <>
-      <h1>Телефонный справочник</h1>
+      <Typography variant="h3" gutterBottom component="div">
+        Phonebook
+      </Typography>
     </>
   );
 }
