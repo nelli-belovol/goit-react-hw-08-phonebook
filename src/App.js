@@ -1,8 +1,8 @@
 import './App.css';
 
-import React, { lazy, Suspense } from 'react';
+import React, { lazy, Suspense, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
-
+import { useDispatch } from 'react-redux';
 import AppBar from './Components/AppBar/AppBar';
 
 import { Loading } from './Components/Loading';
@@ -11,11 +11,19 @@ import RegisterView from './views/RegisterView/RegisterView.jsx';
 import LoginView from './views/LoginView/LoginView.jsx';
 import PublicRoute from './Components/PublicRoute/PublicRoute';
 import PrivateRoute from './Components/PrivatRoute/PrivateRoute';
+
+import { authOperations } from 'redux/auth/authOperations';
 const AsyncContactsView = lazy(() =>
   import('./views/ContactsView/ContactsView.jsx'),
 );
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(authOperations.resetError());
+  }, [dispatch]);
+
   return (
     <Suspense fallback={<Loading />}>
       <AppBar />

@@ -1,4 +1,4 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk, createAction } from '@reduxjs/toolkit';
 
 import * as ApiService from '../../ApiService/ApiService';
 import { authSelectors } from './authSelectors';
@@ -61,9 +61,12 @@ const getInfoUser = createAsyncThunk(
   },
 );
 
+const resetError = createAction('auth/error');
+
 export const authOperations = {
   register,
   logIn,
   logOut,
   getInfoUser,
+  resetError,
 };

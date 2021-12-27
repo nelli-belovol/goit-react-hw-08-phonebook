@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { authOperations } from '../../redux/auth/authOperations';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
@@ -9,6 +9,7 @@ export default function LoginView() {
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const error = useSelector(state => state.auth.error);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -81,6 +82,7 @@ export default function LoginView() {
         >
           Login
         </Button>
+        {error && <p>Check the data and try again</p>}
       </Box>
     </div>
   );

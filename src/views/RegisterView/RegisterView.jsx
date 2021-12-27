@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { authOperations } from '../../redux/auth/authOperations';
 import { NavLink } from 'react-router-dom';
 
@@ -13,6 +13,7 @@ export default function RegisterView() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
+  const error = useSelector(state => state.auth.error);
 
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
@@ -116,6 +117,7 @@ export default function RegisterView() {
       >
         <NavLink to="/login"> Register</NavLink>
       </Button>
+      {error && <p>Check the data and try again</p>}
     </Box>
   );
 }
