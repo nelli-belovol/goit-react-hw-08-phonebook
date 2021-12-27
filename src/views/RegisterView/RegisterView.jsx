@@ -56,7 +56,7 @@ export default function RegisterView() {
           },
         },
       ]}
-      noValidate
+      validate
       onSubmit={handleSubmit}
       autoComplete="on"
     >
@@ -64,7 +64,7 @@ export default function RegisterView() {
         <TextField
           required
           id="outlined-required"
-          label="Имя"
+          label="name"
           type="text"
           name="name"
           value={name}
@@ -73,7 +73,7 @@ export default function RegisterView() {
         <TextField
           required
           id="outlined-required"
-          label="Почта"
+          label="email"
           type="email"
           name="email"
           value={email}
@@ -83,7 +83,7 @@ export default function RegisterView() {
         <TextField
           required
           id="outlined-password-input"
-          label="Пароль"
+          label="password"
           type="password"
           autoComplete="current-password"
           name="password"
@@ -93,7 +93,7 @@ export default function RegisterView() {
         <TextField
           required
           id="outlined-password-input"
-          label="Пароль"
+          label="confirm password"
           type="password"
           autoComplete="current-password"
           name="passwordConfirm"

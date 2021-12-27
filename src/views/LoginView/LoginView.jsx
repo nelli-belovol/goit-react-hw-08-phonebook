@@ -47,7 +47,7 @@ export default function LoginView() {
             },
           },
         ]}
-        noValidate
+        validate
         onSubmit={handleSubmit}
         autoComplete="on"
       >
@@ -55,7 +55,7 @@ export default function LoginView() {
           <TextField
             required
             id="outlined-required"
-            label="Почта"
+            label="email"
             type="email"
             name="email"
             value={email}
@@ -65,7 +65,7 @@ export default function LoginView() {
           <TextField
             required
             id="outlined-password-input"
-            label="Пароль"
+            label="password"
             type="password"
             autoComplete="current-password"
             name="password"
@@ -78,7 +78,7 @@ export default function LoginView() {
           variant="contained"
           type="submit"
         >
-          Войти
+          Login
         </Button>
       </Box>
     </div>
