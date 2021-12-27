@@ -32,6 +32,10 @@ export default function RegisterView() {
 
   const handleSubmit = e => {
     e.preventDefault();
+    if (password !== passwordConfirm) {
+      alert('passwords must match');
+      return;
+    }
     dispatch(authOperations.register({ name, email, password }));
     setName('');
     setEmail('');
@@ -68,6 +72,8 @@ export default function RegisterView() {
           type="text"
           name="name"
           value={name}
+          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+          title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
           onChange={handleChange}
         />
         <TextField
@@ -88,6 +94,7 @@ export default function RegisterView() {
           autoComplete="current-password"
           name="password"
           value={password}
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2, 3}$"
           onChange={handleChange}
         />
         <TextField
@@ -98,6 +105,7 @@ export default function RegisterView() {
           autoComplete="current-password"
           name="passwordConfirm"
           value={passwordConfirm}
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2, 3}$"
           onChange={handleChange}
         />
       </div>

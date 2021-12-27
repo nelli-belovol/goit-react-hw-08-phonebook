@@ -70,6 +70,7 @@ export default function LoginView() {
             autoComplete="current-password"
             name="password"
             value={password}
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2, 3}$"
             onChange={handleChange}
           />
         </div>
