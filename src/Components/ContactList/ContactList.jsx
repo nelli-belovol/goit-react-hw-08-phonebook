@@ -46,9 +46,10 @@ export default function ContactsList() {
     dispatch(contactsOperations.delContact(id));
   };
 
-  const handleEditContact = id => {
-    console.log(id);
-  };
+  // const handleEditContact = id => {
+  //   console.log(id);
+  // };
+
   const filterContact = () => {
     const normalizeFilter = filter.toLowerCase();
 
